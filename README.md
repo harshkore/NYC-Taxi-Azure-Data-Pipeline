@@ -3,4 +3,4 @@
 
 ### Architecture
 
-![NYC](NYCTaxiArchitecture.png)
+![NYC Taxi Architecture] (TaxiArchitecture.png)
