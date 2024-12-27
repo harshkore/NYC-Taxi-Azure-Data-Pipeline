@@ -77,4 +77,4 @@ The dataset includes information about taxi trip pickups, drop-offs, fares, pass
     * If **False** (item <= 9), it will trigger the `Copy NYC Data` activity.
 
 ### Conclusion
-This project highlights a scalable and modular approach to processing NYC Taxi data using Azure services. By leveraging the power of Azure Data Factory, Databricks, and Power BI, the pipeline ensures efficient data ingestion, transformation, and reporting. The architecture is designed to handle large datasets and provide actionable insights through interactive dashboards.
+This project highlights a scalable and modular approach to processing NYC Taxi data using Azure services. By leveraging the power of **Azure Data Factory**, **Databricks**, and **Power BI**, the pipeline ensures efficient **data ingestion**, **transformation**, and **reporting**. The architecture is designed to handle large datasets and provide actionable insights through interactive dashboards.
