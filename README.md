@@ -26,9 +26,11 @@ The dataset includes information about taxi trip pickups, drop-offs, fares, pass
 2. **Data Transformation:**
 * Processed and enriched data in the **Silver layer** using **Apache Spark** within **Databricks**.
 * Applied cleansing and transformation logic to ensure data quality and prepare it for analytics.
+![Silver Layer](dataTransformation.PNG)
 
 3. **Analytical Data Layer:**
 * Designed the **Gold layer** with **Delta Lake**, storing aggregated and analytical-ready data in **Parquet format**.
+![Gold Layer](dataGold.PNG)
 
 4. **Reporting:**
 * Built interactive dashboards in **Power BI**, leveraging the Gold layer to provide actionable insights and real-time analytics.
@@ -40,7 +42,7 @@ The dataset includes information about taxi trip pickups, drop-offs, fares, pass
 * **Dynamic Content:** Each value in this range (1 to 12) will be evaluated by the `IfCondition` activity.
 * **Implementation:** The `ForEach` activity will have a range of values from `1 to 12`, where each iteration will pass the current value to the `IfCondition` for further evaluation
 * **Image Representation:**
-![ForEach Activity](adfForEach.PNG)
+![ForEach Activity](forEachAdf.PNG)
 
 2. **IfCondition Activity:**
 * **Purpose**: This activity evaluates the current iteration value to determine if it is greater than 9.
@@ -73,3 +75,6 @@ The dataset includes information about taxi trip pickups, drop-offs, fares, pass
 
     * If **True** (item > 9), it will trigger the `NYCGreaterThan9` activity.
     * If **False** (item <= 9), it will trigger the `Copy NYC Data` activity.
+
+### Conclusion
+This project highlights a scalable and modular approach to processing NYC Taxi data using Azure services. By leveraging the power of Azure Data Factory, Databricks, and Power BI, the pipeline ensures efficient data ingestion, transformation, and reporting. The architecture is designed to handle large datasets and provide actionable insights through interactive dashboards.
