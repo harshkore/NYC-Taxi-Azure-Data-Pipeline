@@ -32,18 +32,44 @@ The dataset includes information about taxi trip pickups, drop-offs, fares, pass
 
 4. **Reporting:**
 * Built interactive dashboards in **Power BI**, leveraging the Gold layer to provide actionable insights and real-time analytics.
+![PowerBI](MicrosoftBI.PNG)
 
 ### Control Flow Implementation
-**Key Components:**
+1. **ForEach Activity:**
+* **Purpose:** The `ForEach` activity will iterate over a range of values from 1 to 12.
+* **Dynamic Content:** Each value in this range (1 to 12) will be evaluated by the `IfCondition` activity.
+* **Implementation:** The `ForEach` activity will have a range of values from `1 to 12`, where each iteration will pass the current value to the `IfCondition` for further evaluation
+* **Image Representation:**
+![ForEach Activity](adfForEach.PNG)
 
-* **ForEach Activity:** Loops over a range of values `(@range(1,12))` for iterative data copy operations.
-* **IfCondition Activity:** Evaluates conditions for branching workflows:
-  - **True:** Runs a copy activity for values less than or equal to 9 using specific parameters.
-  - **False:** Runs a different copy activity for values greater than 9.
+2. **IfCondition Activity:**
+* **Purpose**: This activity evaluates the current iteration value to determine if it is greater than 9.
+* **Dynamic Content**:
+    * The dynamic content used for evaluation is `@greater(item(), 9)`, which checks if the current item is greater than 9.
+* **Implementation**:
+    * **True (Greater Than 9)**: If the value is greater than 9, the `NYCGreaterThan9` activity is executed.
+    * **False (Less Than or Equal to 9)**: If the value is 9 or less, the `Copy NYC Data` activity is executed instead.
+* **Image Representation:**
+![If Activity](adf_IF.PNG)
 
-**Workflow Logic:**
-1. The **ForEach activity** iterates 12 times to cover the full data range.
-2. Inside the loop, the **IfCondition activity** directs the execution flow based on the evaluated condition.
-    * **True:** Executes the Copy Data activity for values from 1 to 9.
-    * **False:** Executes the Copy Data activity for values 10, 11, and 12.
-3. Parameterized **Copy Data activities** ensure efficient and dynamic data movement based on the condition.
+3. **Copy Activity:**
+* **Purpose:** The `Copy` activity is responsible for transferring data. It is parameterized and invoked based on the outcome of the `IfCondition` activity.
+* **Implementation:** Depending on whether the value is greater than 9 or not, the `Copy NYC Data` activity or the `NYCGreaterThan9` activity is triggered accordingly.
+* **Image Representation:**</br>
+
+**Copy NYC Data**
+![CopyData Activity](adf_copyData.PNG)
+
+**NYCGreaterThan9**
+![CopyData Activity](adf_copyGreater9.PNG)
+
+### Workflow Logic
+* **ForEach Iterates over 1 to 12:**
+    * The range (1 to 12) ensures that the iteration runs 12 times.
+    * Each iteration will evaluate the current item (value) against the condition in the IfCondition activity.
+
+* **IfCondition with Dynamic Content** `@greater(item(), 9)`:
+  * The condition checks if the value is greater than 9:
+
+    * If **True** (item > 9), it will trigger the `NYCGreaterThan9` activity.
+    * If **False** (item <= 9), it will trigger the `Copy NYC Data` activity.
